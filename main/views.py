@@ -29,3 +29,20 @@ def createCoffee(request):
 		form = CoffeeForm()
 		context['form'] = form
 		return render(request, 'createCoffee.html', context)
+
+def editCoffee(request, coffee_id):
+	context = {}
+	context['id'] = coffee_id
+	coffee = Coffee.objects.get(id=coffee_id)
+	if request.method == "POST":
+		form = CoffeeForm(request.POST, instance=coffee)
+		context['form'] = form
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+		else:
+			return render(request, 'editCoffee.html', context)
+	else:
+		form = CoffeeForm(instance=coffee)
+		context['form'] = form
+		return render(request, 'editCoffee.html', context)
