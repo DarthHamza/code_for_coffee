@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class Bean(models.Model):
 	name = models.CharField(max_length=255)
 
 	def __str__(self):
 		return self.name
+
 
 class Roast(models.Model):
 	name = models.CharField(max_length=255)
@@ -12,11 +14,13 @@ class Roast(models.Model):
 	def __str__(self):
 		return self.name
 
+
 class Powder(models.Model):
 	name = models.CharField(max_length=255)
 
 	def __str__(self):
 		return self.name
+
 
 class Syrup(models.Model):
 	name = models.CharField(max_length=255)
@@ -36,5 +40,6 @@ class Coffee(models.Model):
 	powder = models.ManyToManyField(Powder, null=True, blank=True)
 	syrup = models.ManyToManyField(Syrup, null=True, blank=True)
 	extra_instructions = models.TextField(null=True, blank=True)
+	
 	def __str__(self):
 		return self.name
