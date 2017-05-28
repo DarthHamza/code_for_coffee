@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 import requests
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ def home(request):
 	token = social_account.socialtoken_set.get(account=social_account.id).token
 	response = requests.get(url, headers={"Authorization":"token "+token})
 	organization_list = response.json()
+
 	return render(request, 'home.html', {"user": user, "object_list": organization_list})
 
 
