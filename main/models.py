@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Bean(models.Model):
 	name = models.CharField(max_length=255)
@@ -30,6 +30,7 @@ class Syrup(models.Model):
 
 
 class Coffee(models.Model):
+	user = models.ForeignKey(User)
 	name = models.CharField(max_length=255)
 	bean = models.ForeignKey(Bean)
 	roast = models.ForeignKey(Roast)
@@ -40,6 +41,15 @@ class Coffee(models.Model):
 	powder = models.ManyToManyField(Powder, blank=True)
 	syrup = models.ManyToManyField(Syrup, blank=True)
 	extra_instructions = models.TextField(null=True, blank=True)
-	
+
 	def __str__(self):
 		return self.name
+
+
+class Order(models.Model):
+	user = models.ForeignKey(User)
+	coffee = models.ForeignKey(Coffee)
+	date = models.DateField()
+
+	def __str__(self):
+		return str(self.user)
