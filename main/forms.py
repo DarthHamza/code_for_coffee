@@ -12,7 +12,7 @@ class RoastForm(forms.ModelForm):
     class Meta:
         model = Roast
         fields = "__all__"
-    
+
 
 class PowderForm(forms.ModelForm):
     class Meta:
@@ -30,3 +30,12 @@ class CoffeeForm(forms.ModelForm):
     class Meta:
         model = Coffee
         fields = "__all__"
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['date']
+        widgets = {
+        'date': forms.DateInput(attrs={'type':'date'}),
+        }

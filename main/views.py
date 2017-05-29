@@ -46,3 +46,23 @@ def editCoffee(request, coffee_id):
 		form = CoffeeForm(instance=coffee)
 		context['form'] = form
 		return render(request, 'editCoffee.html', context)
+
+def addOrder(request, coffee_id):
+	context = {}
+	context['id'] = coffee_id
+	coffee = Coffee.objects.get(id=coffee_id)
+	if request.method == "POST":
+		form = OrderForm(request.POST)
+		context['form'] = form
+		if form.is_valid():
+			obj = form.save(commit=False)
+			obj.user = request.user
+			obj.coffee = coffee
+			obj.save()
+			return redirect('/')
+		else:
+			return render(request, 'addOrder.html', context)
+	else:
+		form = OrderForm()
+		context['form'] = form
+		return render(request, 'addOrder.html', context)

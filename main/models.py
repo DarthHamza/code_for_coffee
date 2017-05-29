@@ -30,6 +30,7 @@ class Syrup(models.Model):
 
 
 class Coffee(models.Model):
+	user = models.ForeignKey(User)
 	name = models.CharField(max_length=255)
 	bean = models.ForeignKey(Bean)
 	roast = models.ForeignKey(Roast)
@@ -51,4 +52,4 @@ class Order(models.Model):
 	date = models.DateField()
 
 	def __str__(self):
-		return self.user
+		return str(self.user)
