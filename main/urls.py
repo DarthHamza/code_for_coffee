@@ -18,6 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
+    url(r'^dashboard/$', views.dashboard, name="dashboard"),
     url(r'^createCoffee/$', views.createCoffee, name="createCoffee"),
     url(r'^editCoffee/(?P<coffee_id>[0-9]+)/$', views.editCoffee, name="editCoffee"),
     url(r'^addOrder/(?P<coffee_id>[0-9]+)/$', views.addOrder, name="addOrder"),

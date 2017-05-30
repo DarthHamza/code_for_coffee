@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{usr}}</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+		  {% for coffee in order_list %}
+		    <div class="col col-sm-3">
+		      {{coffee}}
+		    </div>
+		  {% endfor %}
+		</div>
+	</div>
+</body>
+	<script src="{% static 'js/bootstrap.min.js' %}" ></script>
+</html>
